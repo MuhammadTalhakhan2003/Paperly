@@ -1,18 +1,4 @@
 Paperly — Walkthrough Video
 ===========================
 
-Add your public video link below after recording:
-
-  VIDEO URL: <paste your public Loom / YouTube / Drive link here>
-
-Suggested 3–5 minute outline:
-  1. Log in as Alice; show the dashboard grid (My documents / Shared with me / Starred).
-  2. Create a new document; demonstrate formatting (bold, headings, lists) and
-     autosave; rename it; refresh to show persistence.
-  3. Import a .md or .docx file into a new document.
-  4. Star a document; duplicate one.
-  5. Share a document with bob@paperly.app as Editor. In an incognito window,
-     log in as Bob and edit it under "Shared with me". Log in as Carol for view-only.
-  6. Toggle dark mode; export a document to Markdown / PDF.
-  7. Briefly cover key decisions (Next.js + Prisma/Turso, access model,
-     server-side sanitization) and how AI supported the build.
+  VIDEO URL: https://drive.google.com/file/d/1Mg_0w3g8PKeJLdtLfVXNpGDro--awp29/view?usp=sharing

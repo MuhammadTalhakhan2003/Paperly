@@ -11,7 +11,7 @@ access control.
 
 - **Live product:** https://paperly-ashen.vercel.app
 - **Source code:** https://github.com/MuhammadTalhakhan2003/Paperly
-- **Walkthrough video:** <paste your public video link here>
+- **Walkthrough video:** https://drive.google.com/file/d/1Mg_0w3g8PKeJLdtLfVXNpGDro--awp29/view?usp=sharing
 
 ## Review / test accounts
 
