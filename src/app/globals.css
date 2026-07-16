@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — light (default) and dark themes                     */
+/* ------------------------------------------------------------------ */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4f7f6;
+  --background-grad: radial-gradient(
+    1200px 600px at 100% -10%,
+    #d5f5ef 0%,
+    transparent 55%
+  );
+  --surface: #ffffff;
+  --surface-2: #eef2f1;
+  --foreground: #14211f;
+  --muted: #647471;
+  --border: #e2e8e6;
+  --accent: #0d9488;
+  --accent-hover: #0f766e;
+  --accent-soft: #d5f5ef;
+  --accent-soft-fg: #0f766e;
+  --success-soft: #ecfdf5;
+  --success-fg: #047857;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+  --ring: rgba(13, 148, 136, 0.18);
+  --overlay: rgba(15, 23, 42, 0.45);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0 10px 30px rgba(16, 24, 40, 0.12);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #0b1211;
+  --background-grad: radial-gradient(
+    1200px 600px at 100% -10%,
+    #0c2f2a 0%,
+    transparent 55%
+  );
+  --surface: #131a19;
+  --surface-2: #1b2422;
+  --foreground: #e6ecea;
+  --muted: #93a5a1;
+  --border: #273230;
+  --accent: #14b8a6;
+  --accent-hover: #2dd4bf;
+  --accent-soft: #0c2f2a;
+  --accent-soft-fg: #99f6e4;
+  --success-soft: #0b2a20;
+  --success-fg: #6ee7b7;
+  --danger: #f87171;
+  --danger-soft: #2a1618;
+  --ring: rgba(45, 212, 191, 0.28);
+  --overlay: rgba(0, 0, 0, 0.6);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  background-image: var(--background-grad);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable UI primitives                                              */
+/* ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.65rem;
+  border: 1px solid transparent;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.btn-secondary {
+  background: var(--surface);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--foreground);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+}
+.btn-danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+}
+.btn-icon {
+  padding: 0.5rem;
+  width: 2.35rem;
+  height: 2.35rem;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--foreground);
+  border-radius: 0.65rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+.input::placeholder {
+  color: var(--muted);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.badge-accent {
+  background: var(--accent-soft);
+  color: var(--accent-soft-fg);
+}
+.badge-success {
+  background: var(--success-soft);
+  color: var(--success-fg);
+}
+.badge-muted {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.auth-shell {
+  background: radial-gradient(
+      900px 500px at 50% -20%,
+      var(--accent-soft) 0%,
+      transparent 60%
+    ),
+    var(--background);
+}
+
+/* ------------------------------------------------------------------ */
+/* Rich-text content — shared by the TipTap editor and read-only views */
+/* ------------------------------------------------------------------ */
+.doc-content {
+  line-height: 1.7;
+  color: var(--foreground);
+  word-wrap: break-word;
+}
+.doc-content:focus {
+  outline: none;
+}
+.doc-content h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.6rem;
+  line-height: 1.25;
+}
+.doc-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1.1rem 0 0.5rem;
+}
+.doc-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0 0.4rem;
+}
+.doc-content p {
+  margin: 0.5rem 0;
+}
+.doc-content ul,
+.doc-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.6rem;
+}
+.doc-content ul {
+  list-style: disc;
+}
+.doc-content ol {
+  list-style: decimal;
+}
+.doc-content li {
+  margin: 0.2rem 0;
+}
+.doc-content blockquote {
+  border-left: 3px solid var(--border);
+  margin: 0.8rem 0;
+  padding-left: 1rem;
+  color: var(--muted);
+}
+.doc-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.doc-content code {
+  background: var(--surface-2);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.doc-content pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.8rem 0;
+}
+.doc-content pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Placeholder for the empty editor (TipTap Placeholder extension) */
+.doc-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted);
+  pointer-events: none;
+  height: 0;
+}

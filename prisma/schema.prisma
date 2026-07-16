@@ -1,0 +1,55 @@
+// DocFlow — Prisma schema
+// Prisma 7 uses the `prisma-client` generator (ESM) and configures the
+// datasource URL in `prisma.config.ts`. At runtime we connect through the
+// libSQL driver adapter so the exact same code targets a local SQLite file
+// in development and a hosted Turso database in production.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  documents Document[] @relation("OwnedDocuments")
+  shares    Share[]
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  title     String   @default("Untitled document")
+  content   String   @default("") // sanitized rich-text HTML
+  starred   Boolean  @default(false) // owner's favorite flag
+  ownerId   String
+  owner     User     @relation("OwnedDocuments", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  shares Share[]
+
+  @@index([ownerId])
+}
+
+// A Share grants one user access to a document owned by someone else.
+// SQLite has no native enums, so `role` is a validated string: VIEWER | EDITOR.
+model Share {
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       String   @default("EDITOR")
+  createdAt  DateTime @default(now())
+
+  @@unique([documentId, userId])
+  @@index([userId])
+}
