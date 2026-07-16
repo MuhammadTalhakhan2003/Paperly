@@ -6,7 +6,7 @@ access control.
 
 Built for the Ajaia AI-Native Full Stack Developer assignment.
 
-- **Live demo:** _<add your Vercel URL here after deploying>_
+- **Live demo:** https://paperly-ashen.vercel.app
 - **Walkthrough video:** see [`VIDEO.txt`](./VIDEO.txt)
 
 > Try it: log in with `alice@paperly.app` / `password123` (demo accounts below).

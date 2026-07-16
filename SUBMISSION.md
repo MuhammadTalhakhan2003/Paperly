@@ -6,9 +6,9 @@
 
 ## Links
 
-- **Live product URL:** _<add your Vercel URL here>_
+- **Live product URL:** https://paperly-ashen.vercel.app
 - **Walkthrough video:** _<add public video link — also in `VIDEO.txt`>_
-- **Source code:** _<add your GitHub repo link>_ (and this Drive folder)
+- **Source code:** https://github.com/MuhammadTalhakhan2003/Paperly (and this Drive folder)
 
 ## Test / review accounts
 
